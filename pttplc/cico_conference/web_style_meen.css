@@ -1,0 +1,101 @@
+ @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #f2f1ee;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.41);
+        }
+        .manual-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: block;
+            cursor: zoom-in;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.427);
+            transition: transform 0.3s ease;
+            
+        }
+        .manual-image:hover {
+            transform: scale(1.3);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.773);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: none;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .close {
+            position: absolute;
+            top: 17px;
+            right: 35px;
+            color: #ffcb00;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #b03f3f;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+        .animated-gradient-text {
+            background: linear-gradient(to right, #a5dada, #b7b0be);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: animate 3s linear infinite;
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        
+        @keyframes animate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }

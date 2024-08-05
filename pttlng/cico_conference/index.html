@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการใช้งาน 2024</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:300,400');
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Lato', sans-serif;
+            background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+            color: #FFFFFF;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #f2f1ee;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.41);
+        }
+        .manual-image {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            display: block;
+            cursor: zoom-in;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.427);
+            transition: transform 0.3s ease;
+            
+        }
+        .manual-image:hover {
+            transform: scale(1.3);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.773);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: none;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        .close {
+            position: absolute;
+            top: 17px;
+            right: 35px;
+            color: #ffcb00;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close:hover,
+        .close:focus {
+            color: #b03f3f;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 768px) {
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+        .animated-gradient-text {
+            background: linear-gradient(to right, #a5dada, #b7b0be);
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: animate 3s linear infinite;
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        
+        @keyframes animate {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parallax" style="background-image: url('background.jpg');">
+        <h1 class="h1">PTTLNG Video Conference User Guide 2024</h1>
+    </div>
+
+    <div class="container">
+        <p style="text-align: center; color: #fefefe;">เลื่อนลงเพื่อดูคู่มือทั้งหมด คลิกที่รูปภาพเพื่อขยาย</p>
+        <img src="1.webp" alt="คู่มือหน้า 1" class="manual-image">
+        <img src="2.webp" alt="คู่มือหน้า 2" class="manual-image">
+        <img src="3.webp" alt="คู่มือหน้า 3" class="manual-image">
+        <img src="4.webp" alt="คู่มือหน้า 4" class="manual-image">
+        <!-- เพิ่มรูปภาพเพิ่มเติมตามต้องการ -->
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        const modal = document.getElementById("imageModal");
+        const modalImg = document.getElementById("modalImage");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        
+        document.querySelectorAll('.manual-image').forEach(img => {
+            img.onclick = function() {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                if (window.innerWidth > 768) {
+                    modalImg.style.cursor = 'zoom-in';
+                    modalImg.onclick = function() {
+                        if (this.style.objectFit == "contain") {
+                            this.style.objectFit = "none";
+                            this.style.cursor = 'zoom-out';
+                        } else {
+                            this.style.objectFit = "contain";
+                            this.style.cursor = 'zoom-in';
+                        }
+                    }
+                }
+            }
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // ฟังก์ชันสำหรับซูมบนมือถือ
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let initialPinchDistance = 0;
+        let currentScale = 1;
+
+        modalImg.addEventListener('touchstart', function(e) {
+            if (e.touches.length === 2) {
+                initialPinchDistance = getPinchDistance(e);
+            } else if (e.touches.length === 1) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        });
+
+        modalImg.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+            if (e.touches.length === 2) {
+                const currentDistance = getPinchDistance(e);
+                const scaleDiff = currentDistance / initialPinchDistance;
+                currentScale = Math.min(Math.max(currentScale * scaleDiff, 1), 3);
+                modalImg.style.transform = `scale(${currentScale})`;
+                initialPinchDistance = currentDistance;
+            } else if (e.touches.length === 1) {
+                const touchX = e.touches[0].clientX;
+                const touchY = e.touches[0].clientY;
+                modalImg.style.left = `${touchX - touchStartX}px`;
+                modalImg.style.top = `${touchY - touchStartY}px`;
+            }
+        });
+
+        function getPinchDistance(e) {
+            return Math.hypot(
+                e.touches[0].pageX - e.touches[1].pageX,
+                e.touches[0].pageY - e.touches[1].pageY
+            );
+        }
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
