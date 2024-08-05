@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decibel Meter with Spectrum</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Audio Performance Test</h1>
+        <p>Check the sound from your speakers</p>
+    </header>
+    <div class="container">
+        <div class="meter">
+            <div class="bar-container">
+                <div id="bar"></div>
+            </div>
+            <div class="info">
+                <p>AVG: <span id="avg">0</span> dB</p>
+                <p>MAX: <span id="max">0</span> dB</p>
+            </div>
+            <p id="current">0 dB</p>
+        </div>
+        <canvas id="spectrum"></canvas>
+    </div>
+    <footer>
+        <p id="date-time"></p>
+        <p>Preventive Maintenance by Seanet Asia Team</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
