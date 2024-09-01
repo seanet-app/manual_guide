@@ -72,3 +72,21 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+
+        // ค้นหาส่วน gifContainer และ modal
+        var gifContainer = document.getElementById("gifContainer");
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("modalImage");
+        var span = document.getElementsByClassName("close")[0];
+
+        // เมื่อคลิกที่ gifContainer ให้แสดง modal
+        gifContainer.onclick = function() {
+            modal.style.display = "block";
+            // แสดงเนื้อหาทั้งหมดของ gifContainer ใน modal โดยการคัดลอกเนื้อหา
+            modalImg.src = this.querySelector("img").src; // ใช้ภาพภายในเป็น modal content
+        }
+
+        // เมื่อคลิกปุ่มปิด ให้ปิด modal
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
