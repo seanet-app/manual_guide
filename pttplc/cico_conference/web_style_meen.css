@@ -1,238 +1,238 @@
- @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: 'Mitr', sans-serif;
-            background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
-            color: #FFFFFF;
-            overflow-x: hidden;
-        }
+@import url('https://fonts.googleapis.com/css2?family=Mitr:wght@200;300;400;500;600;700&display=swap');
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Mitr', sans-serif;
+    background-image: linear-gradient(to right, #ec77ab 0%, #7873f5 100%);
+    color: #FFFFFF;
+    overflow-x: hidden;
+}
 
-        .responsive-iframe {
-            width: 100%;
-            height: 100vh; /* Adjust height as needed */
-            border: none;
-            margin-top: 20px; /* Space between image and iframe */
-        }
+.responsive-iframe {
+    width: 100%;
+    height: 100vh; /* Adjust height as needed */
+    border: none;
+    margin-top: 20px; /* Space between image and iframe */
+}
 
-        .guide-container {
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 30px;
-        background-color: #ffffff;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+.guide-container {
+max-width: 800px;
+margin: 40px auto;
+padding: 30px;
+background-color: #ffffff;
+border-radius: 15px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 
-        .content-section {
-            margin: 20px 0;
-            padding: 20px;
-            background-color: #fafafa;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.295);
-        }
+.content-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.295);
+}
 
-        .content-section h3 {
-            color: #333;
-            font-size: 1.5em;
-            margin-bottom: 15px;
-        }
+.content-section h3 {
+    color: #333;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
 
-        .content-section p, .content-section ol {
-            color: #555;
-            line-height: 1.6;
-            font-size: 1.1em;
-        }
+.content-section p, .content-section ol {
+    color: #555;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
 
-        .gif-container {
-            margin-top: 20px;
-            text-align: center;
-        }
+.gif-container {
+    margin-top: 20px;
+    text-align: center;
+}
 
-        .gif-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+.gif-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
-        .footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 40px;
-            background-color: #0070c0;
-            color: white;
-            border-radius: 10px;
-        }
+.footer {
+    text-align: center;
+    padding: 15px;
+    margin-top: 40px;
+    background-color: #0070c0;
+    color: white;
+    border-radius: 10px;
+}
 
-        .container {
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 20px 30px; /* เพิ่ม padding ด้านบนและล่าง */
-        }
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 30px; /* เพิ่ม padding ด้านบนและล่าง */
+}
 
-        h1 {
-            text-align: center;
-            font-size: 3em;
-            margin-bottom: 30px;
-            color: #f2f1ee;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.41);
-        }
+h1 {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 30px;
+    color: #f2f1ee;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.41);
+}
 
-        .manual-image {
-        width: 100%;
-        max-width: 800px;
-        margin: 40px auto; /* เพิ่ม margin ด้านบนและล่าง */
-        display: block;
-        cursor: zoom-in;
-        border-radius: 15px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.427);
-        transition: transform 0.3s ease;
-        
+.manual-image {
+width: 100%;
+max-width: 800px;
+margin: 40px auto; /* เพิ่ม margin ด้านบนและล่าง */
+display: block;
+cursor: zoom-in;
+border-radius: 15px;
+box-shadow: 0 10px 20px rgba(0, 0, 0, 0.427);
+transition: transform 0.3s ease;
+
+}
+.manual-image:hover {
+    transform: scale(1.3);
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.773);
+}
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 90%;
+    max-width: none;
+    max-height: 90vh;
+    object-fit: contain;
+}
+.close {
+    position: absolute;
+    top: 17px;
+    right: 35px;
+    color: #ffcb00;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.close:hover,
+.close:focus {
+    color: #b03f3f;
+    text-decoration: none;
+    cursor: pointer;
+}
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 768px) {
+    .parallax {
+        background-attachment: scroll;
     }
-        .manual-image:hover {
-            transform: scale(1.3);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.773);
-        }
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 90%;
-            max-width: none;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-        .close {
-            position: absolute;
-            top: 17px;
-            right: 35px;
-            color: #ffcb00;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .close:hover,
-        .close:focus {
-            color: #b03f3f;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        @media (max-width: 768px) {
-            .parallax {
-                background-attachment: scroll;
-            }
-        }
-        .animated-gradient-text {
-            background: linear-gradient(to right, #a5dada, #b7b0be);
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: animate 3s linear infinite;
-            font-size: 3em;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        
-        @keyframes animate {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
+}
+.animated-gradient-text {
+    background: linear-gradient(to right, #a5dada, #b7b0be);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: animate 3s linear infinite;
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-        .custom-header {
-            background-color: #ffffff;
-            border-radius: 15px;
-            padding: 15px 30px;
-            margin: 40px 0; /* เพิ่ม margin ด้านบนและล่าง */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .left-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .left-section h1 {
-            font-size: 2.8em;
-            color: #3a75c4; /* สีฟ้าสำหรับคำว่า User */
-            margin: 0;
-            font-weight: bold;
-        }
-        
-        .left-section h1 span {
-            color: #4f4f4f; /* สีเทาสำหรับคำว่า Guide */
-        }
-        
-        .question-icons {
-            font-size: 1.8em;
-            color: #4f4f4f;
-            margin: 0 5px;
-            font-weight: bold;
-        }
-        
-        .right-section {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 10px;
-            text-align: right;
-        }
-        
-        .right-section h2 {
-            font-size: 1.6em;
-            color: #1e3d6b;
-            margin: 0;
-            line-height: 1.4;
-        }
-        
-        .right-section h2 span {
-            color: #3a75c4; /* สีฟ้าเข้มสำหรับคำว่า Video Conference */
-        }
-        
-        .ptt-logo {
-            width: 80px; /* ปรับขนาดโลโก้ */
-            height: auto;
-        }
-        
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .right-section {
-                align-items: center;
-                margin-top: 10px;
-            }
-            .right-section h2 {
-                text-align: center;
-                margin: 0;
-            }
-        }
+
+@keyframes animate {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.custom-header {
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 15px 30px;
+    margin: 40px 0; /* เพิ่ม margin ด้านบนและล่าง */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.left-section h1 {
+    font-size: 2.8em;
+    color: #3a75c4; /* สีฟ้าสำหรับคำว่า User */
+    margin: 0;
+    font-weight: bold;
+}
+
+.left-section h1 span {
+    color: #4f4f4f; /* สีเทาสำหรับคำว่า Guide */
+}
+
+.question-icons {
+    font-size: 1.8em;
+    color: #4f4f4f;
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+.right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+    text-align: right;
+}
+
+.right-section h2 {
+    font-size: 1.6em;
+    color: #1e3d6b;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.right-section h2 span {
+    color: #3a75c4; /* สีฟ้าเข้มสำหรับคำว่า Video Conference */
+}
+
+.ptt-logo {
+    width: 80px; /* ปรับขนาดโลโก้ */
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .right-section {
+        align-items: center;
+        margin-top: 10px;
+    }
+    .right-section h2 {
+        text-align: center;
+        margin: 0;
+    }
+}
