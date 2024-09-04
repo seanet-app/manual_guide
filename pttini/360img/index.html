@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360 Image Viewer with Pannellum</title>
+    <!-- ลิงก์ไปยัง Pannellum CSS และ JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #panorama {
+            width: 100%;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <!-- สร้าง Container สำหรับ Panorama -->
+    <div id="panorama"></div>
+
+    <script>
+        // สร้าง Panorama Viewer โดยใช้ Pannellum
+        pannellum.viewer('panorama', {
+            "type": "equirectangular",
+            "panorama": "360.jpg",  // ใช้ไฟล์ 360.jpg ที่อยู่ในโฟลเดอร์เดียวกัน
+            "autoLoad": true
+        });
+    </script>
+</body>
+</html>
