@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>คู่มือการใช้งาน Cisco Room Bar - BYOD</title>
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #764ba2;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --text-dark: #333;
+            --text-light: #666;
+            --text-on-dark-bg: #f1f1f1;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --card-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            --card-hover-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            --border-radius-main: 20px;
+            --border-radius-inner: 12px;
+            --font-size-base: 16px; /* Base font size */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: var(--font-size-base); /* Setting base font size on html for rem units */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--gradient-primary);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.25rem; /* 20px / 16px */
+        }
+
+        .header {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-main);
+            padding: 2.5rem; /* 40px / 16px */
+            text-align: center;
+            margin-bottom: 1.875rem; /* 30px / 16px */
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2.25em; /* Relative to parent font size */
+            margin-bottom: 0.625rem; /* 10px / 16px */
+            font-weight: 700;
+        }
+
+        .header p {
+            color: var(--text-light);
+            font-size: 1.125em; /* Relative to parent font size */
+            margin-bottom: 1.25rem; /* 20px / 16px */
+        }
+
+        .os-badge {
+            display: inline-block;
+            background: #0078d4;
+            color: white;
+            padding: 0.5rem 1.25rem; /* 8px 20px */
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9em; /* Relative to parent font size */
+            margin-top: 0.625rem; /* 10px / 16px */
+        }
+
+        .content-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius-main);
+            padding: 1.875rem; /* 30px / 16px */
+            margin-bottom: 1.5625rem; /* 25px / 16px */
+            box-shadow: var(--card-shadow);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.75em; /* Relative to parent font size */
+            margin-bottom: 1.25rem; /* 20px / 16px */
+            display: flex;
+            align-items: center;
+            gap: 0.9375rem; /* 15px / 16px */
+        }
+
+        .section-icon {
+            width: 2.8125rem; /* 45px / 16px */
+            height: 2.8125rem; /* 45px / 16px */
+            background: var(--gradient-primary);
+            border-radius: var(--border-radius-inner);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em; /* Relative to parent font size */
+            font-weight: bold;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .step-list {
+            list-style: none;
+            counter-reset: step-counter;
+            padding-left: 1.25rem; /* 20px / 16px */
+        }
+        
+        .step-list > li {
+            counter-increment: step-counter;
+            margin-bottom: 1.25rem; /* 20px / 16px */
+            padding-top: 0.625rem; /* 10px / 16px */
+            padding-left: 1.5625rem; /* 25px / 16px, increased slightly for better spacing with counter */
+            padding-right: 1.25rem; /* 20px / 16px */
+            padding-bottom: 0.625rem; /* 10px / 16px */
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            border-radius: var(--border-radius-inner);
+            border-left: 5px solid var(--primary-color);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .step-list > li:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .step-list > li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: -0.9375rem; /* -15px / 16px */
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            width: 1.875rem; /* 30px / 16px */
+            height: 1.875rem; /* 30px / 16px */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9em; /* Relative to parent font size */
+        }
+
+        .step-list li strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.5rem; /* 8px / 16px */
+            font-size: 1.1em; /* Relative to parent font size */
+        }
+        
+        .step-list ul {
+            list-style-type: disc;
+            margin-left: 1.25rem; /* 20px / 16px */
+            padding-left: 1.25rem; /* 20px / 16px */
+            margin-top: 0.625rem; /* 10px / 16px */
+        }
+        .step-list ul li {
+            background: none;
+            border-left: none;
+            padding-left: 0.3125rem; /* 5px / 16px */
+            margin-bottom: 0.5rem; /* 8px / 16px */
+            font-size: 0.95em; /* Relative to parent font size */
+        }
+        .step-list ul li::before {
+            content: none !important; 
+        }
+
+        .highlight-box, .highlight-box2 { /* Combined similar styles */
+            color: white;
+            padding: 0.9375rem; /* 15px / 16px */
+            border-radius: 0.625rem; /* 10px / 16px */
+            margin: 1.25rem 0; /* 20px / 16px */
+            text-align: center;
+            font-weight: 700; /* Slightly less bold than 800 */
+        }
+        .highlight-box {
+            background: linear-gradient(175deg, #4facfe 0%, #720790 100%);
+        }
+        .highlight-box2 {
+            background: linear-gradient(175deg, #4facfe 0%, #7f70aa 100%);
+        }
+        .highlight-box2 a {
+            color: white;
+            text-decoration: underline;
+        }
+        .highlight-box2 a:hover {
+            text-decoration: none;
+        }
+
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Adjusted min for better fit */
+            gap: 1.25rem; /* 20px / 16px */
+            margin-top: 1.25rem; /* 20px / 16px */
+        }
+
+        .app-card {
+            background: white;
+            border-radius: var(--border-radius-inner);
+            padding: 1.25rem; /* 20px / 16px */
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Slightly softer shadow */
+            transition: transform 0.3s ease;
+        }
+
+        .app-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .app-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.9375rem; /* 15px / 16px */
+            font-size: 1.2em; /* Relative to parent font size */
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted min */
+            gap: 0.9375rem; /* 15px / 16px */
+        }
+
+        .setting-item {
+            background: #f8f9fa;
+            padding: 0.9375rem; /* 15px / 16px */
+            border-radius: 0.5rem; /* 8px / 16px */
+            border-left: 4px solid var(--primary-color);
+            font-size: 0.9em; /* Slightly smaller text for better fit */
+        }
+
+        .setting-item strong {
+            color: var(--primary-color);
+            display: block;
+            margin-bottom: 0.3125rem; /* 5px / 16px */
+            font-size: 1em; /* Relative to parent */
+        }
+
+        .cable-image2 {
+            text-align: center;
+            margin: 1.25rem 0; /* 20px / 16px */
+        }
+
+        .cable-image2 img, 
+        .screenshot-item img {
+            max-width: 450px; 
+            width: 100%;
+            height: auto;
+            border-radius: 0.625rem; /* 10px / 16px */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            margin-bottom: 0.625rem; /* 10px / 16px */
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .cable-image2 img:hover,
+        .screenshot-item img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12); /* Slightly enhanced hover shadow */
+        }
+
+        .screenshot-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted min */
+            gap: 1.25rem; /* 20px / 16px */
+            margin: 1.25rem 0; /* 20px / 16px */
+        }
+
+        .screenshot-item {
+            text-align: center;
+        }
+
+        .screenshot-caption {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 0.9em; /* Relative to parent */
+        }
+        
+        /* Modal Styles */
+        .image-modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            padding-top: 3.125rem; /* 50px / 16px */
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.88); /* Slightly darker overlay */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: auto;
+            max-width: 88%; /* Slightly increased for better view on larger modals */
+            max-height: 88vh; 
+            border-radius: 5px; /* Subtle rounding */
+        }
+
+        .modal-content, #modal-caption {
+            animation-name: zoom;
+            animation-duration: 0.35s; /* Slightly faster zoom */
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0.8); opacity: 0;} /* Start smaller and faded */
+            to {transform:scale(1); opacity: 1;}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.25rem; /* 20px / 16px */
+            right: 2.1875rem; /* 35px / 16px */
+            color: var(--text-on-dark-bg);
+            font-size: 2.5rem; /* 40px / 16px */
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #ccc; /* Lighter hover for close button */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        #modal-caption {
+            margin: 0.9375rem auto; /* 15px / 16px */
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 0.625rem 0; /* 10px / 16px */
+            font-size: 1.05em; /* Slightly adjusted caption size */
+        }
+
+
+        /* Media Queries for Enhanced Responsiveness */
+        @media (max-width: 1024px) { /* For tablets and larger phones */
+            html {
+                font-size: calc(var(--font-size-base) * 0.95); /* Slightly smaller base font */
+            }
+            .header h1 { font-size: 2em; }
+            .section-title { font-size: 1.6em; }
+            .app-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+            .settings-grid { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+            .screenshot-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+        }
+
+        @media (max-width: 768px) { /* For smaller tablets and mobile phones */
+            html {
+                font-size: calc(var(--font-size-base) * 0.9); /* Even smaller base font */
+            }
+            .container { padding: 1rem; }
+            .header { padding: 1.875rem; } /* 30px */
+            .header h1 { font-size: 1.8em; }
+            .header p { font-size: 1em; }
+            .os-badge { padding: 0.4rem 1rem; font-size: 0.85em;}
+
+            .content-card { padding: 1.25rem; } /* 20px */
+            .section-title { font-size: 1.5em; gap: 0.625rem;}
+            .section-icon { width: 2.5rem; height: 2.5rem; font-size: 1.1em;}
+
+            .step-list { padding-left: 0.8rem; }
+            .step-list > li { padding-left: 1.8rem; } /* Adjust for smaller counter */
+            .step-list > li::before { width: 1.6rem; height: 1.6rem; font-size: 0.8em; left: -0.8rem;}
+
+            .highlight-box, .highlight-box2 { padding: 0.8rem; font-size: 0.95em; }
+            
+            .app-grid { grid-template-columns: 1fr; } /* Stack app cards */
+            .settings-grid { grid-template-columns: 1fr; } /* Stack setting items */
+            
+            .screenshot-container {
+                grid-template-columns: 1fr; 
+            }
+            .modal-content {
+                max-width: 95%;
+            }
+            .close-modal { font-size: 2.2rem; top: 0.9rem; right: 1.5rem;}
+            #modal-caption { font-size: 1em; }
+        }
+
+        @media (max-width: 480px) { /* For very small screens */
+            html {
+                font-size: calc(var(--font-size-base) * 0.85); /* Smallest base font */
+            }
+            .header { padding: 1.5rem; }
+            .header h1 { font-size: 1.6em; }
+            .content-card { padding: 1rem; }
+            .section-title { font-size: 1.35em; }
+            .step-list > li { font-size: 0.95em; }
+            .step-list ul li { font-size: 0.9em; }
+            .cable-image2 img, .screenshot-item img { max-width: 100%; } /* Allow full width on very small screens */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>คู่มือการใช้งาน Cisco Room Bar Series</h1>
+            <p>สำหรับการประชุมออนไลน์ที่ต้องการใช้ Cisco Room Bar Series กับ Laptop ที่ใช้ระบบปฏิบัติการ Windows</p>
+            <span class="os-badge">Windows</span>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">
+                <div class="section-icon" aria-hidden="true">🔌</div>
+                การเชื่อมต่อ Laptop และใช้งาน Room Bar เป็นอุปกรณ์เสริม (BYOD Mode)
+            </h2>
+            
+            <div class="highlight-box">
+                📌 โหมดนี้เหมาะสำหรับ: การประชุมออนไลน์ที่ต้องการคุณภาพเสียงและวิดีโอที่ดีกว่าจาก Laptop, การแสดงหน้าจอคอมพิวเตอร์ให้คนในห้องดู, การประชุมแบบ Hybrid
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-top: 1.875rem; margin-bottom: 0.9375rem;">ขั้นตอนการเชื่อมต่อและใช้งาน</h3>
+            <ol class="step-list">
+                <li>
+                    <strong>เชื่อมต่อสาย USB (สำคัญที่สุด)</strong>
+                    เชื่อมต่อสาย USB จาก Laptop (พอร์ต USB-C หรือ USB-A) ไปยังพอร์ต USB ที่รองรับบน Cisco Room Bar เพื่อให้ Laptop ใช้กล้อง, ไมโครโฟน, และลำโพงของ Room Bar ได้
+                </li>
+                <li>
+                    <strong>(ทางเลือก) เชื่อมต่อสาย HDMI สำหรับแสดงหน้าจอ</strong>
+                    หากต้องการแสดงหน้าจอ Laptop และ USB ไม่ได้ส่งสัญญาณภาพ ให้เชื่อมต่อสาย HDMI จาก Laptop ไปยัง HDMI input บน Room Bar
+                </li>
+                 <li>
+                    <strong>รอ Windows ติดตั้ง Driver และปรับการแสดงผล (ถ้าจำเป็น)</strong>
+                    โดยทั่วไป Windows จะจัดการโดยอัตโนมัติ หากเชื่อมต่อ HDMI อาจต้องปรับโหมดการแสดงผล (Extend/Duplicate)
+                    <div class="cable-image2" style="margin-top: 0.9375rem;">
+                        <img src="connection.avif" alt="ภาพตัวอย่างการเชื่อมต่อสาย USB และ HDMI ระหว่าง Laptop และ Cisco Room Bar" onclick="openModal(this)">
+                        <p class="screenshot-caption">ภาพตัวอย่างการเชื่อมต่อสาย (คลิกที่ภาพเพื่อดูขนาดเต็ม)</p>
+                    </div>
+                </li>
+                <li>
+                    <strong>การควบคุมจาก Touch Panel (ถ้าใช้งาน)</strong>
+                    เมื่ออยู่ในโหมด BYOD และใช้งานผ่าน Touch Panel คุณอาจสามารถ:
+                    <ul>
+                        <li>ควบคุมระดับเสียงของลำโพง Room Bar</li>
+                        <li>ปิดเสียงไมโครโฟน (Mute) ของ Room Bar</li>
+                        <li><strong>ข้อจำกัด:</strong> การควบคุมวิดีโอ (เริ่ม/หยุดกล้อง), การเลือกเนื้อหาที่จะแชร์, หรือการออกจากประชุม จะต้องทำจากแอปพลิเคชันบน Laptop ของคุณโดยตรง</li>
+                    </ul>
+                     <div class="screenshot-container" style="grid-template-columns: 1fr; margin-top:0.9375rem;">
+                        <div class="screenshot-item">
+                            <img src="call_from_laptop2.png" alt="หน้าจอ Touch Panel หลังจากเลือก Call from laptop" onclick="openModal(this)">
+                            <p class="screenshot-caption">ตัวอย่างหน้าจอควบคุมบน Touch Panel (คลิกที่ภาพเพื่อดูขนาดเต็ม)</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <strong>การสิ้นสุดการใช้งาน</strong>
+                    <ul>
+                        <li>หากใช้งานผ่าน Touch Panel: แตะปุ่ม "ตัดการเชื่อมต่อ" (Disconnect) หรือ "หยุด" (Stop)</li>
+                        <li>โดยทั่วไป: เพียงแค่ถอดสาย USB และ HDMI (ถ้าใช้) ออกจาก Laptop</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">
+                <div class="section-icon" aria-hidden="true">⚙️</div>
+                การตั้งค่าใน Zoom และ Microsoft Teams (บน Laptop)
+            </h2>
+            
+            <p>หลังจากเชื่อมต่อ Laptop และ Room Bar เรียบร้อยแล้ว คุณต้องตั้งค่าอุปกรณ์ในโปรแกรมการประชุมบน Laptop ของคุณดังนี้:</p>
+
+            <div class="app-grid">
+                <div class="app-card">
+                    <h4><span aria-hidden="true">🎥</span> การตั้งค่าใน Microsoft Teams</h4>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <strong>Audio devices (อุปกรณ์เสียง)</strong>
+                            เลือก "Cisco Room Bar ..."
+                        </div>
+                        <div class="setting-item">
+                            <strong>Speaker (ลำโพง)</strong>
+                            เลือก "Cisco Room Bar ... Digital Audio"
+                        </div>
+                        <div class="setting-item">
+                            <strong>Microphone (ไมโครโฟน)</strong>
+                            เลือก "Cisco Room Bar ... Digital Audio"
+                        </div>
+                        <div class="setting-item">
+                            <strong>Camera (กล้อง)</strong>
+                            เลือก "Cisco Room Bar ..."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app-card">
+                    <h4><span aria-hidden="true">🎯</span> การตั้งค่าใน Zoom</h4>
+                    <div class="settings-grid">
+                        <div class="setting-item">
+                            <strong>Microphone (ไมโครโฟน)</strong>
+                            เลือก "Cisco Room Bar ... Digital Audio"
+                        </div>
+                        <div class="setting-item">
+                            <strong>Speaker (ลำโพง)</strong>
+                            เลือก "Cisco Room Bar ... Digital Audio"
+                        </div>
+                        <div class="setting-item">
+                            <strong>Camera (กล้อง)</strong>
+                            เลือก "Cisco Room Bar ..."
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="screenshot-container">
+                <div class="screenshot-item">
+                     <img src="Screenshot (50) - Copy.png" alt="หน้าตั้งค่าอุปกรณ์ใน Microsoft Teams" onclick="openModal(this)">
+                    <p class="screenshot-caption">หน้าตั้งค่าอุปกรณ์ใน Microsoft Teams (คลิกที่ภาพเพื่อดูขนาดเต็ม)</p>
+                </div>
+                
+                <div class="screenshot-item">
+                    <img src="Screenshot (53).png" alt="หน้าตั้งค่าอุปกรณ์ใน Zoom" onclick="openModal(this)">
+                    <p class="screenshot-caption">หน้าตั้งค่าอุปกรณ์ใน Zoom (คลิกที่ภาพเพื่อดูขนาดเต็ม)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">
+                <div class="section-icon" aria-hidden="true">✅</div>
+                การทดสอบการทำงาน
+            </h2>
+            
+            <ol class="step-list">
+                <li>
+                    <strong>ตรวจสอบการรับรู้อุปกรณ์ (บน Laptop)</strong>
+                    เปิด Device Manager ใน Windows และตรวจสอบว่า Cisco Room Bar ปรากฏในรายการ Audio/Video devices
+                </li>
+                <li>
+                    <strong>ทดสอบกล้อง (ผ่านแอปบน Laptop)</strong>
+                    เปิดแอป Camera ใน Windows หรือใช้ Test Video ใน Zoom/Teams โดยเลือกกล้องเป็น Cisco Room Bar
+                </li>
+                <li>
+                    <strong>ทดสอบไมโครโฟน (ผ่านแอปบน Laptop)</strong>
+                    ใช้ Sound Settings ใน Windows หรือ Test Audio ในแอปประชุม โดยเลือกไมโครโฟนเป็น Cisco Room Bar
+                </li>
+                <li>
+                    <strong>ทดสอบลำโพง (ผ่านแอปบน Laptop)</strong>
+                    เล่นเสียงทดสอบผ่าน Cisco Room Bar Digital Audio จากการตั้งค่าในแอปประชุมหรือ Laptop
+                </li>
+                <li>
+                    <strong>ทดสอบการประชุม</strong>
+                    ทำ Test Call ผ่านแอปพลิเคชันบน Laptop ก่อนการประชุมจริง
+                </li>
+            </ol>
+
+            <div class="highlight-box">
+                🔧 หากมีปัญหา: ลองถอดและเสียบสาย USB และ HDMI ใหม่, รีสตาร์ทแอปพลิเคชันการประชุม, ตรวจสอบว่าเลือกอุปกรณ์ Cisco Room Bar ถูกต้องในแอปพลิเคชัน, หรือตรวจสอบการตั้งค่าบน Touch Panel (หากใช้งาน)
+            </div>
+
+            <div class="highlight-box2" style="margin-top: 1.25rem;">
+                📧 หากต้องการความช่วยเหลือเพิ่มเติม: ติดต่อทีมสนับสนุนที่ 
+                <a href="mailto:support@seanetasia.com">
+                    support@seanetasia.com
+                </a>
+            </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal" class="image-modal">
+      <span class="close-modal" onclick="closeModal()" aria-label="Close image modal">&times;</span>
+      <img class="modal-content" id="img01" alt="Enlarged image">
+      <div id="modal-caption"></div>
+    </div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("modal-caption");
+var originalPageFlow; // To store original overflow style
+
+function openModal(element) {
+  originalPageFlow = document.body.style.overflow;
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  modal.style.display = "block";
+  modalImg.src = element.src;
+  modalImg.alt = "ขยายภาพ: " + element.alt; // Add context to alt text for enlarged image
+  captionText.innerHTML = element.alt;
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = originalPageFlow; // Restore background scrolling
+}
+
+modal.addEventListener('click', function(event) {
+  if (event.target === modal || event.target.classList.contains('close-modal')) {
+    closeModal();
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape" && modal.style.display === "block") {
+        closeModal();
+    }
+});
+</script>
+
+</body>
+</html>
